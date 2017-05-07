@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>field_all</title>
+    <script src="echarts/echarts.js"></script>
+    <script src="map/js/china.js"></script>
+</head>
+<body>
+<div id="main" style="width: 1350px;height: 600px;"></div>
+<script th:inline="javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+    //    app.title = '北上广青总量 - 条形图';
+
+    option = {
+        title : {
+            text: '中国各行业占比分布',
+            subtext: '数据来自www.zhaopin.com',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['软件/互联网开发/系统集成','硬件开发','互联网产品/运营管理','IT质量管理/测试/配置管理','IT运维/技术支持','IT管理/项目协调','电信/通信技术开发及应用']
+        },
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:[[${field_160000}]], name:'软件/互联网开发/系统集成'},
+                    {value:[[${field_160300}]], name:'硬件开发'},
+                    {value:[[${field_160200}]], name:'互联网产品/运营管理'},
+                    {value:[[${field_160400}]], name:'IT质量管理/测试/配置管理'},
+                    {value:[[${field_200500}]], name:'IT运维/技术支持'},
+                    {value:[[${field_200300}]], name:'IT管理/项目协调'},
+                    {value:[[${field_5001000}]], name:'电信/通信技术开发及应用'}
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+</script>
+</body>
+</html>

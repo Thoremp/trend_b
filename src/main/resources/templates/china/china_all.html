@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>china_all</title>
+    <script src="echarts/echarts.js"></script>
+    <script src="map/js/china.js"></script>
+</head>
+<body>
+<div id="main" style="width: 1350px;height: 600px;"></div>
+
+<script type="text/javascript" th:inline="javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+
+    var data = [
+        { name: "上海", value: [[${shanghai}]]},
+        { name: "珠海", value: [[${zhuhai}]]},
+//        { name: "三亚", value: 1135},
+//        { name: "惠州", value: 1973},
+        { name: "海口", value: 2568},
+        { name: "合肥", value: [[${hefei}]]},
+        { name: "南京", value: [[${nanjing}]]},
+        { name: "杭州", value: [[${hangzhou}]]},
+        { name: "苏州", value: [[${suzhou}]]},
+        { name: "无锡", value: [[${wuxi}]]},
+//        { name: "昆山", value: 1894},
+        { name: "广州", value: [[${guangzhou}]]},
+        { name: "深圳", value: [[${shenzhen}]]},
+        { name: "佛山", value: [[${foshan}]]},
+        { name: "东莞", value: [[${dongguan}]]},
+        { name: "福州", value: [[${fuzhou}]]},
+        { name: "厦门", value: [[${shamen}]]},
+        { name: "南宁", value: [[${nanning}]]},
+        { name: "郑州", value: [[${zhengzhou}]]},
+        { name: "武汉", value: [[${wuhan}]]},
+        { name: "长沙", value: [[${zhangsha}]]},
+        { name: "南昌", value: [[${nanchang}]]},
+        { name: "北京", value: [[${beijing}]]},
+        { name: "长春", value: [[${zhangchun}]]},
+        { name: "大连", value: [[${dalian}]]},
+        { name: "沈阳", value: [[${shenyang}]]},
+        { name: "哈尔滨", value: [[${haerbin}]]},
+        { name: "天津", value: [[${tianjin}]]},
+        { name: "济南", value: [[${jinan}]]},
+        { name: "青岛", value: [[${qingdao}]]},
+        { name: "太原", value: [[${taiyuan}]]},
+        { name: "石家庄", value: [[${shijiazhuang}]]},
+        { name: "西安", value: [[${xian}]]},
+        { name: "成都", value: [[${chengdou}]]},
+        { name: "重庆", value: [[${zhongqing}]]},
+        { name: "昆明", value: [[${kunming}]]},
+//        { name: "三门峡", value: [[${sanmenxia}]]},
+        { name: "乌鲁木齐", value: [[${wulumuqi}]]},
+//        { name: "信阳", value: [[${xinyang}]]},
+        { name: "兰州", value: [[${lanzhou}]]},
+//        { name: "南阳", value: [[${nanyang}]]},
+//        { name: "周口", value: [[${zhoukou}]]},
+//        { name: "商丘", value: [[${shangqiu}]]},
+//        { name: "安阳", value: [[${anyang}]]},
+//        { name: "宜宾", value: [[${yibin}]]},
+//        { name: "平顶山", value: [[${pingdingshan}]]},
+//        { name: "开封", value: [[${kaifeng}]]},
+//        { name: "新乡", value: [[${xinxiang}]]},
+        { name: "洛阳", value: [[${luoyang}]]},
+//        { name: "济源", value: [[${jiyuan}]]},
+//        { name: "漯河", value: [[${luohe}]]},
+        { name: "潍坊", value: [[${weifang}]]},
+//        { name: "濮阳", value: [[${puyang}]]},
+        { name: "烟台", value: [[${yantai}]]},
+//        { name: "焦作", value: [[${jiaozuo}]]},
+//        { name: "秦皇岛", value: [[${qinhuangdao}]]},
+//        { name: "菏泽", value: [[${heze}]]},
+//        { name: "西平", value: [[${xiping}]]},
+//        { name: "许昌", value: [[${xuchang}]]},
+        { name: "贵阳", value: [[${guiyang}]]},
+//        { name: "驻马店", value: [[${zhumadian}]]},
+//        { name: "鹤壁", value: [[${hebi}]]},
+        {name: "银川", value: [[${yinchuan}]]},
+        {name: "西宁", value: [[${xining}]]},
+        {name: "温州", value: [[${wenzhou}]]},
+        {name: "徐州", value: [[${xuzhou}]]},
+        {name: "宁波", value: [[${ningbo}]]},
+        {name: "呼和浩特", value: [[${huhehaote}]]},
+        {name: "保定", value: [[${baoding}]]},
+    ];
+
+    var geoCoordMap = {
+        "上海": [121.48, 31.22],
+        "珠海": [113.52, 22.3],
+//        "三亚": [109.31, 18.14],
+//        "惠州": [114.4, 23.09],
+        "海口": [110.35, 20.02],
+        "合肥": [117.27, 31.86],
+        "南京": [118.78, 32.04],
+        "杭州": [120.19, 30.26],
+        "苏州": [120.62, 31.32],
+        "无锡": [120.29, 31.59],
+//        "昆山": [120.95, 31.39],
+        "广州": [113.23, 23.16],
+        "深圳": [114.07, 22.62],
+        "佛山": [113.11, 23.05],
+        "东莞": [113.75, 23.04],
+        "福州": [119.3, 26.08],
+        "厦门": [118.1, 24.46],
+        "南宁": [108.33, 22.84],
+        "郑州": [113.65, 34.76],
+        "武汉": [114.31, 30.52],
+        "长沙": [113, 28.21],
+        "南昌": [115.89, 28.68],
+        "北京": [116.46, 39.92],
+        "长春": [125.35, 43.88],
+        "大连": [121.62, 38.92],
+        "沈阳": [123.38, 41.8],
+        "哈尔滨": [126.63, 45.75],
+        "天津": [117.2, 39.13],
+        "济南": [117, 36.65],
+        "青岛": [120.33, 36.07],
+        "太原": [112.53, 37.87],
+        "石家庄": [114.48, 38.03],
+        "西安": [108.95, 34.27],
+        "成都": [104.06, 30.67],
+        "重庆": [106.54, 29.59],
+        "昆明": [102.73, 25.04],
+//        "三门峡": [111.19, 34.76],
+        "乌鲁木齐": [87.68, 	43.77],
+//        "信阳": [114.08, 32.13],
+        "兰州": [103.73, 36.03],
+//        "南阳": [112.53, 33.01],
+//        "周口": [114.63, 33.63],
+//        "商丘": [115.65, 34.44],
+//        "安阳": [114.35, 36.10],
+//        "宜宾": [104.56, 29.77],
+//        "平顶山": [113.29, 33.75],
+//        "开封": [114.35, 34.79],
+//        "新乡": [113.85, 35.31],
+        "洛阳": [112.44, 34.70],
+//        "济源": [112.57, 35.08],
+//        "漯河": [114.02, 33.56],
+        "潍坊": [119.1, 36.62],
+//        "濮阳": [114.98, 35.71],
+        "烟台": [121.39, 37.52],
+//        "焦作": [113.21, 35.24],
+//        "秦皇岛": [119.57, 39.95],
+//        "菏泽": [115.1, 35.4],
+//        "西平": [114, 33.38],
+//        "许昌": [113.81, 34.02],
+        "贵阳": [106.71, 26.57],
+//        "驻马店": [114.02, 32.98],
+//        "鹤壁": [114.17, 35.90],
+        "银川": [106.19, 38.30],
+        "西宁": [101.74, 36.56],
+        "温州": [120.65, 28.01],
+        "徐州": [117.2, 34.26],
+        "常州": [119.95, 31.79],
+        "宁波":[121.56, 29.86],
+        "呼和浩特":[111.65,40.82],
+        "保定":[115.48, 38.85],
+    };
+
+    var convertData = function (data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            var geoCoord = geoCoordMap[data[i].name];
+            if (geoCoord) {
+                res.push({
+                    name: data[i].name,
+                    value: geoCoord.concat(data[i].value)
+                });
+            }
+        }
+        return res;
+    };
+
+    option = {
+        backgroundColor: '#404a59',
+        title: {
+            text: '全国主要城市从事计算机行业人数统计',
+            subtext: 'data from www.zhaopin.com 单位:千人',
+            sublink: 'www.zhaopin.com',
+            left: 'center',
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        tooltip : {
+            trigger: 'item'
+        },
+        legend: {
+            orient: 'vertical',
+            y: 'bottom',
+            x:'right',
+            data:['pm2.5'],
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        geo: {
+            map: 'china',
+            label: {
+                emphasis: {
+                    show: false
+                }
+            },
+            roam: true,
+            itemStyle: {
+                normal: {
+                    areaColor: '#323c48',
+                    borderColor: '#111'
+                },
+                emphasis: {
+                    areaColor: '#2a333d'
+                }
+            }
+        },
+        series : [
+            {
+                name: 'pm2.5',
+                type: 'scatter',
+                coordinateSystem: 'geo',
+                data: convertData(data),
+                symbolSize: function (val) {
+                    return val[2] / 10;
+                },
+                label: {
+                    normal: {
+                        formatter: '{b}',
+                        position: 'right',
+                        show: false
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#ddb926'
+                    }
+                }
+            },
+            {
+                name: 'Top 5',
+                type: 'effectScatter',
+                coordinateSystem: 'geo',
+                data: convertData(data.sort(function (a, b) {
+                    return b.value - a.value;
+                }).slice(0, 6)),
+                symbolSize: function (val) {
+                    return val[2] / 10;
+                },
+                showEffectOn: 'render',
+                rippleEffect: {
+                    brushType: 'stroke'
+                },
+                hoverAnimation: true,
+                label: {
+                    normal: {
+                        formatter: '{b}',
+                        position: 'right',
+                        show: true
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#f4e925',
+                        shadowBlur: 10,
+                        shadowColor: '#333'
+                    }
+                },
+                zlevel: 1
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+</script>
+</body>
+</html>
