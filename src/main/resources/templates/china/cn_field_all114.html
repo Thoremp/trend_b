@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>cn_field_all114</title>
+    <script th:src="@{echarts/echarts.js}" rel="stylesheet"></script>
+    <script th:src="@{map/js/china.js}"></script>
+</head>
+<body>
+<div id="main" style="width: 1350px;height: 600px;"></div>
+<script type="text/javascript" th:inline="javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+//    app.title = '环形图';
+
+    option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['软件工程师','互联网产品经理/主管','高级软件工程师','WEB前端开发','数据库开发工程师'
+                ,'Java开发工程师','通信技术工程师','硬件工程师','游戏设计/开发','手机软件开发工程师',
+                '嵌入式软件开发','用户界面（UI）设计','互联网产品专员/助理','网页设计/制作/美工','系统集成工程师'
+                ,'软件研发工程师','系统架构设计师','互联网软件工程师','网络运营管理','IT技术支持/维护经理',
+                '游戏策划','软件测试','Android开发工程师','IT技术支持/维护工程师','网络运营专员/助理',
+                'C语言开发工程师','电子商务专员/助理','移动互联网开发','算法工程师','用户体验（UE/UX）设计',
+                'ERP技术/开发应用','电子商务经理/主管','需求工程师','IOS开发工程师','游戏界面设计',
+                '嵌入式硬件开发','高级硬件工程师','网站编辑','系统工程师','信息技术专员','游戏测试','硬件测试',
+                '系统分析员','系统管理员','网络与信息安全工程师','PHP开发工程师','SEO/SEM','信息技术标准化工程师',
+                '数据库管理员','新媒体运营','网站架构设计师','网站架构设计师','计算机辅助设计师','语音/视频/图形开发',
+                'IT项目经理/主管','网络管理员','系统测试','网络工程师','市场运营','产品运营','产品总监',
+                '配置管理工程师','Helpdesk','信息技术经理/主管','淘宝/微信运营专员/主管','CTO/CIO','移动通信工程师',
+                '脚本开发工程师','运营主管/专员','仿真应用工程师','IT技术文员/助理','运营总监','ERP实施顾问',
+                '网站运营总监/经理','内容运营','标准化工程师','数据运营','IT项目执行/协调人员','网店运营','有线传输工程师',
+                '通信研发工程师','无线/射频通信工程师','计算机硬件维护工程师','IT质量管理工程师','电信网络工程师',
+                '通信项目管理','IT技术/研发总监','网店推广','数据通信工程师','网店客服','微信推广','IT质量管理经理/主管',
+                '网店店长','电子商务总监','通信电源工程师','网店管理员','IT项目总监','电信交换工程师','通信标准化工程师',
+                '增值产品开发工程师','手机维修','IT技术/研发经理/主管']
+        },
+        series: [
+            {
+                name:'www.zhaopin.com',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'bold'
+                        }
+                    }
+                },
+                center: ['80%', '60%'],
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {value:[[${ruanjiangongchengshi}]], name:'软件工程师'},
+                    {value:[[${hulianwangchanpinjinglizhuguan}]], name:'互联网产品经理/主管'},
+                    {value:[[${gaojiruanjiangongchengshi}]], name:'高级软件工程师'},
+                    {value:[[${WEBqianduankaifa}]], name:'WEB前端开发'},
+                    {value:[[${shujukukaifagongchengshi}]], name:'数据库开发工程师'},
+                    {value:[[${Javakaifagongchengshi}]], name:'Java开发工程师'},
+                    {value:[[${tongxinjigongchengshi}]], name:'通信技工程师'},
+                    {value:[[${yingjiangongchengshi}]], name:'硬件工程师'},
+                    {value:[[${youxishejikaifa}]], name:'游戏设计/开发'},
+                    {value:[[${shoujiruanjiankaifagongchengshi}]], name:'手机软件开发工程师'},
+                    {value:[[${qianrushiruanjiankaifa}]], name:'嵌入式软件开发'},
+                    {value:[[${yonghujiemianUIsheji}]], name:'用户界面（UI）设计'},
+                    {value:[[${hulianwangchanpinzhuanyuanzhuli}]], name:'互联网产品专员/助理'},
+                    {value:[[${wangyeshejizhizuomeigong}]], name:'网页设计/制作/美工'},
+                    {value:[[${xitongjichenggongchengshi}]], name:'系统集成工程师'},
+                    {value:[[${ruanjianyanfagongchengshi}]], name:'软件研发工程师'},
+                    {value:[[${xitongjiagoushejishi}]], name:'系统架构设计师'},
+                    {value:[[${hulianwangruanjiangongchengshi}]], name:'互联网软件工程师'},
+                    {value:[[${wangluoyunyingguanli}]], name:'网络运营管理'},
+                    {value:[[${ITjishuweihujingli}]], name:'IT技术支持/维护经理'},
+                    {value:[[${youxicehua}]], name:'游戏策划'},
+                    {value:[[${ruanjianceshi}]], name:'软件测试'},
+                    {value:[[${Androidkaifagongchengshi}]], name:'Android开发工程师'},
+                    {value:[[${ITjishuzhichiweihugongchengshi}]], name:'IT技术支持/维护工程师'},
+                    {value:[[${wangluoyunyingzhuanyuanzhuli}]], name:'网络运营专员/助理'},
+                    {value:[[${Cyuyankaifagongchengshi}]], name:'C语言开发工程师'},
+                    {value:[[${dianzishagnwuzhuanyuanzhuli}]], name:'电子商务专员/助理'},
+                    {value:[[${yidonghulianwangkaifa}]], name:'移动互联网开发'},
+                    {value:[[${suanfagongchengshi}]], name:'算法工程师'},
+                    {value:[[${yonghutiyanUEUXsheji}]], name:'用户体验（UE/UX）设计'},
+                    {value:[[${ERPjishukaifayingyong}]], name:'ERP技术/开发应用'},
+                    {value:[[${dianzishangwujinglizhuguan}]], name:'电子商务经理/主管'},
+                    {value:[[${xuqiugongchengshi}]], name:'需求工程师'},
+                    {value:[[${IOSkaifagongchengshi}]], name:'IOS开发工程师'},
+                    {value:[[${youxijiemiansheji}]], name:'游戏界面设计'},
+                    {value:[[${qianrushiyingjiankaifa}]], name:'嵌入式硬件开发'},
+                    {value:[[${gaojiyingjiangongchengshi}]], name:'高级硬件工程师'},
+                    {value:[[${wangzhanbianji}]], name:'网站编辑'},
+                    {value:[[${xitonggongchengshi}]], name:'系统工程师'},
+                    {value:[[${xinxijishuzhuanyuan}]], name:'信息技术专员'},
+                    {value:[[${youxiceshi}]], name:'游戏测试'},
+                    {value:[[${yingjianceshi}]], name:'硬件测试'},
+                    {value:[[${xitongfenxiyuan}]], name:'系统分析员'},
+                    {value:[[${xitongguanliyuan}]], name:'系统管理员'},
+                    {value:[[${wangluoyuxinxianquangongchengshi}]], name:'网络与信息安全工程师'},
+                    {value:[[${PHPkaifagongchengshi}]], name:'PHP开发工程师'},
+                    {value:[[${SEOSEM}]], name:'SEO/SEM'},
+                    {value:[[${xinxijishubiaozhunhuagongchengshi}]], name:'信息技术标准化工程师'},
+                    {value:[[${shujukuguanliyuan}]], name:'数据库管理员'},
+                    {value:[[${xinmeitiyunying}]], name:'新媒体运营'},
+                    {value:[[${wangzhanjiagoushejishi}]], name:'网站架构设计师'},
+                    {value:[[${jisuanjifuzhushejishi}]], name:'计算机辅助设计师'},
+                    {value:[[${yuyinshipintuxingkaifa}]], name:'语音/视频/图形开发'},
+                    {value:[[${ITxiangmujinglizhuguan}]], name:'IT项目经理/主管'},
+                    {value:[[${wangluoguanliyuan}]], name:'网络管理员'},
+                    {value:[[${xitongceshi}]], name:'系统测试'},
+                    {value:[[${wangluogongchengshi}]], name:'网络工程师'},
+                    {value:[[${shichangyunying}]], name:'市场运营'},
+                    {value:[[${chanpinyunying}]], name:'产品运营'},
+                    {value:[[${chanpinzongjian}]], name:'产品总监'},
+                    {value:[[${peizhiguanligongchengshi}]], name:'配置管理工程师'},
+                    {value:[[${Helpdesk}]], name:'Helpdesk'},
+                    {value:[[${xinxijishujinglizhuguan}]], name:'信息技术经理/主管'},
+                    {value:[[${taobaoweixinyunyingzhuanyuanzhuguan}]], name:'淘宝/微信运营专员/主管'},
+                    {value:[[${CTOCIO}]], name:'CTO/CIO'},
+                    {value:[[${yidongtongxingongchengshi}]], name:'移动通信工程师'},
+                    {value:[[${jiaobenkaifagongchengshi}]], name:'脚本开发工程师'},
+                    {value:[[${yunyingzhuguanzhuanyuan}]], name:'运营主管/专员'},
+                    {value:[[${fangzhenyingyonggongchengshi}]], name:'仿真应用工程师'},
+                    {value:[[${ITjishuwenyuanzhuli}]], name:'IT技术文员/助理'},
+                    {value:[[${yunyingzongjian}]], name:'运营总监'},
+                    {value:[[${ERPshishiguwen}]], name:'ERP实施顾问'},
+                    {value:[[${wangzhanyunyingzongjianjingli}]], name:'网站运营总监/经理'},
+                    {value:[[${neirongyunying}]], name:'内容运营'},
+                    {value:[[${biaozhunhuagongchengshi}]], name:'标准化工程师'},
+                    {value:[[${shujuyunying}]], name:'数据运营'},
+                    {value:[[${ITxiangmuzhixingxietiaorenyuan}]], name:'IT项目执行/协调人员'},
+                    {value:[[${wangdianyunying}]], name:'网店运营'},
+                    {value:[[${youxianchuanshugongchengshi}]], name:'有线传输工程师'},
+                    {value:[[${tongxinyanfagongchengshi}]], name:'通信研发工程师'},
+                    {value:[[${wuxianshepintongxingongchengshi}]], name:'无线/射频通信工程师'},
+                    {value:[[${jisuanjiyingjianweihugongchengshi}]], name:'计算机硬件维护工程师'},
+                    {value:[[${ITzhiliangguanligongchengshi}]], name:'IT质量管理工程师'},
+                    {value:[[${dianxinwangluogongchengshi}]], name:'电信网络工程师'},
+                    {value:[[${tongxinxiangmuguanli}]], name:'通信项目管理'},
+                    {value:[[${ITjishuyanfazongjian}]], name:'IT技术/研发总监'},
+                    {value:[[${wangdiantuiguang}]], name:'网店推广'},
+                    {value:[[${shujutongxingongchengshi}]], name:'数据通信工程师'},
+                    {value:[[${wangdiankefu}]], name:'网店客服'},
+                    {value:[[${weixintuiguang}]], name:'微信推广'},
+                    {value:[[${ITzhiliangguanlijinglizhuguan}]], name:'IT质量管理经理/主管'},
+                    {value:[[${wangdiandianzhang}]], name:'网店店长'},
+                    {value:[[${dianzishangwuzongjian}]], name:'电子商务总监'},
+                    {value:[[${tongxindianyuangongchengshi}]], name:'通信电源工程师'},
+                    {value:[[${wangdianguanliyuan}]], name:'网店管理员'},
+                    {value:[[${ITxiangmuzongjian}]], name:'IT项目总监'},
+                    {value:[[${dianxinjiaohuangongchengshi}]], name:'电信交换工程师'},
+                    {value:[[${tongxinbiaozhunhuagongchengshi}]], name:'通信标准化工程师'},
+                    {value:[[${zengzhichanpingongchengshi}]], name:'增值产品开发工程师'},
+                    {value:[[${shoujiweixiu}]], name:'手机维修'},
+                    {value:[[${ITjishuyanfajinglizhuguan}]], name:'IT技术/研发经理/主管'}
+                ]
+            }
+        ]
+    };
+
+
+    myChart.setOption(option);
+</script>
+</body>
+</html>

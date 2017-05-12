@@ -1,6 +1,8 @@
 package com.qust.domain.dto;
 
 /**
+ *
+ * 统计七个大类各有多少人
  * Created by Tan Weichao on 2017/5/5.
  */
 public class BasisField {

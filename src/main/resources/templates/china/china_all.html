@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8"/>
     <title>china_all</title>
-    <script src="echarts/echarts.js"></script>
-    <script src="map/js/china.js"></script>
+    <!--<script src="echarts/echarts.js"></script>
+    <script src="map/js/china.js"></script>-->
+    <script th:src="@{echarts/echarts.js}" rel="stylesheet"></script>
+    <script th:src="@{map/js/china.js}"></script>
 </head>
 <body>
 <div id="main" style="width: 1350px;height: 600px;"></div>
@@ -17,7 +19,7 @@
         { name: "珠海", value: [[${zhuhai}]]},
 //        { name: "三亚", value: 1135},
 //        { name: "惠州", value: 1973},
-        { name: "海口", value: 2568},
+        { name: "海口", value: [[${haikou}]]},
         { name: "合肥", value: [[${hefei}]]},
         { name: "南京", value: [[${nanjing}]]},
         { name: "杭州", value: [[${hangzhou}]]},
@@ -159,7 +161,7 @@
 
     var convertData = function (data) {
         var res = [];
-        for (var i = 0; i < data.length; i++) {
+        for (var i = 0; i != data.length; i++) {
             var geoCoord = geoCoordMap[data[i].name];
             if (geoCoord) {
                 res.push({
@@ -214,7 +216,7 @@
         },
         series : [
             {
-                name: 'pm2.5',
+                name: 'IT',
                 type: 'scatter',
                 coordinateSystem: 'geo',
                 data: convertData(data),
@@ -238,7 +240,7 @@
                 }
             },
             {
-                name: 'Top 5',
+                name: 'Top',
                 type: 'effectScatter',
                 coordinateSystem: 'geo',
                 data: convertData(data.sort(function (a, b) {

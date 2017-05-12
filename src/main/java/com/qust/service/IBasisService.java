@@ -1,10 +1,7 @@
 package com.qust.service;
 
-import com.qust.domain.Basis;
-import com.qust.domain.dto.BasisDTO;
 import com.qust.domain.dto.BasisField;
 import com.qust.domain.dto.BasisSum;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,28 +16,14 @@ public interface IBasisService {
      * @param sum
      * @return
      */
-    public abstract List<BasisSum> getChinaByCity(String field, Integer sum);
+    public abstract List<BasisSum> getChinaByCity(String field, Long sum);
 
     public abstract List<BasisField> getFieldAll();
 
-    public List<BasisSum> getChinaAll(Integer sum);
+    public List<BasisSum> getChinaAll(Long sum);
 
-    /**
-     * 以下是本地数据,以上是服务器数据
-     */
+    public List<BasisSum> getFieldAll114();
 
-    /**
-     * 查询一个职位的所有记录
-     * @param field
-     * @return
-     */
-    List<Basis> getBasisesByfieldAndArea(String field, String area, String releaseDate);
+    public List<BasisSum> getFieldAllDay();
 
-    List<BasisDTO> getBasisCount(String releaseDate, String area, String field);
-
-    List<BasisDTO> getBasisCountByAreaFieldDate();
-
-    List<Integer> getBasisCountAll();
-
-    List<BasisDTO> getBasis0413();
 }

@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8"/>
     <title>china_all</title>
-    <script src="echarts/echarts.js"></script>
-    <script src="map/js/china.js"></script>
+    <!--<script src="echarts/echarts.js"></script>
+    <script src="map/js/china.js"></script>-->
+    <script th:src="@{echarts/echarts.js}" rel="stylesheet"></script>
+    <script th:src="@{map/js/china.js}"></script>
 </head>
 <body>
 <div id="main" style="width: 1350px;height: 600px;"></div>
