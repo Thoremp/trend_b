@@ -25,6 +25,11 @@ public class HelloWorld {
     @Autowired
     private IRegService regService;
 
+    @RequestMapping(value = "/love")
+    public String love(){
+        return "love";
+    }
+
     @RequestMapping("/")
     String home(Model model) {
         List<User> users = regService.getUsers();

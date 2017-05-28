@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>usa_field_all</title>
+    <script th:src="@{echarts/echarts.js}" rel="stylesheet"></script>
+    <script th:src="@{map/js/china.js}"></script>
+</head>
+<body>
+<div id="main" style="width: 1350px;height: 600px;"></div>
+<script type="text/javascript" th:inline="javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+    option = {
+        title : {
+            text: '美国主要计算机职业占比分布',
+            subtext: 'www.monster.com',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data: ['Python','Java','Hardware','IOS','Android','integrated-circuit','PHP','C++',
+                'test-engineer','Embedded','Network','Database','C#','Communications','Linux']
+        },
+        series : [
+            {
+                name: 'www.monster.com',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:[
+                    {value:[[${Python}]], name:'Python'},
+                    {value:[[${Java}]], name:'Java'},
+                    {value:[[${Hardware}]], name:'Hardware'},
+                    {value:[[${IOS}]], name:'IOS'},
+                    {value:[[${integrated_circuit}]], name:'integrated-circuit'},
+                    {value:[[${PHP}]], name:'PHP'},
+                    {value:[[${C__}]], name:'C++'},
+                    {value:[[${test}]], name:'test-engineer'},
+                    {value:[[${Embedded}]], name:'Embedded'},
+                    {value:[[${Network}]], name:'Network'},
+                    {value:[[${Database}]], name:'Database'},
+                    {value:[[${C}]], name:'C'},
+                    {value:[[${Communications}]], name:'Communications'},
+                    {value:[[${Linux}]], name:'Linux'}
+                ],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    myChart.setOption(option);
+
+</script>
+</body>
+</html>

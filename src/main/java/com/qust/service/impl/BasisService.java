@@ -4,6 +4,7 @@ import com.qust.domain.dto.BasisField;
 import com.qust.domain.dto.BasisSum;
 import com.qust.mapper.BasisMapper;
 import com.qust.service.IBasisService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,25 @@ public class BasisService implements IBasisService {
 
     public List<BasisSum> getFieldAllDay(){
         return basisMapper.getFieldAllDay();
+    }
+
+    public List<BasisSum> getFieldDay7(Long parent_number){
+        return basisMapper.getFieldDay7(parent_number);
+    }
+
+    public List<BasisSum> getAreaDay(String area){
+        return basisMapper.getAreaDay(area);
+    }
+
+    public Long getUSAAll(String field){
+        return basisMapper.getUSAAll(field);
+    }
+
+    public List<BasisSum> getUSADayAll(){
+        return basisMapper.getUSADayAll();
+    }
+
+    public List<BasisSum> getUSADay15(String field){
+        return basisMapper.getUSADay15(field);
     }
 }

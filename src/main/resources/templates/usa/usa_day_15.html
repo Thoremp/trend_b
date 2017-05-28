@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>cn_day_area</title>
+    <!-- 1.引入 jquery -->
+    <script src="jquery/jquery-1.9.1.js"></script>
+    <!-- 2.引入 bootstrap -->
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css"/>
+
+    <script th:src="@{echarts/echarts.js}" rel="stylesheet"></script>
+    <script th:src="@{map/js/china.js}"></script>
+</head>
+<body>
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="btn-group">
+                <a href="/usa_day_15?field=Python" class="btn btn-info btn-default" type="button">Python</a>&nbsp;
+                <a href="/usa_day_15?field=Java" class="btn btn-info btn-default" type="button">Java</a>&nbsp;
+                <a href="/usa_day_15?field=Hardware" class="btn btn-info btn-default" type="button">Hardware</a>&nbsp;
+                <a href="/usa_day_15?field=IOS" class="btn btn-info btn-default" type="button">IOS</a>&nbsp;
+                <a href="/usa_day_15?field=Android" class="btn btn-info btn-default" type="button">Android</a>&nbsp;
+                <a href="/usa_day_15?field=integrated" class="btn btn-info btn-default" type="button">integrated-circuit</a>&nbsp;
+                <a href="/usa_day_15?field=PHP" class="btn btn-info btn-default" type="button">PHP</a>&nbsp;
+                <a href="/usa_day_15?field=test" class="btn btn-info btn-default" type="button">test-engineer</a>&nbsp;
+                <a href="/usa_day_15?field=Embedded" class="btn btn-info btn-default" type="button">Embedded</a>&nbsp;
+                <a href="/usa_day_15?field=Network" class="btn btn-info btn-default" type="button">Network</a>&nbsp;
+                <a href="/usa_day_15?field=Database" class="btn btn-info btn-default" type="button">Database</a>&nbsp;
+                <a href="/usa_day_15?field=C_" class="btn btn-info btn-default" type="button">C#</a>&nbsp;
+                <a href="/usa_day_15?field=C__" class="btn btn-info btn-default" type="button">C++</a>&nbsp;
+                <a href="/usa_day_15?field=Linux" class="btn btn-info btn-default" type="button">Linux</a>&nbsp;
+                <a href="/usa_day_15?field=Communications" class="btn btn-info btn-default" type="button">Communications</a>&nbsp;
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="main" style="width: 1350px;height: 600px;"></div>
+<script type="text/javascript" th:inline="javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+    option = {
+        title: {
+            text: [[${name}]],
+            subtext: 'www.monster.com'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+//            data:['最高气温','最低气温']
+//            data:[[[${name}]]]
+              date:['name']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                dataView: {readOnly: false},
+                magicType: {type: ['line', 'bar']},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis:  {
+            type: 'category',
+            boundaryGap: false,
+//            data: ['周一','周二','周三','周四','周五','周六','周日']
+            data: [[${dateList}]]
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} '
+            }
+        },
+        series: [
+            {
+                name:[[${name}]],
+                type:'line',
+//                data:[11, 11, 15, 13, 12, 13, 10],
+                data: [[${longList}]]
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+</body>
+</html>

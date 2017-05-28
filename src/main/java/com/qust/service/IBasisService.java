@@ -2,6 +2,7 @@ package com.qust.service;
 
 import com.qust.domain.dto.BasisField;
 import com.qust.domain.dto.BasisSum;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,4 +27,13 @@ public interface IBasisService {
 
     public List<BasisSum> getFieldAllDay();
 
+    public List<BasisSum> getFieldDay7(Long parent_number);
+
+    public List<BasisSum> getAreaDay(String area);
+
+    public Long getUSAAll(String field);
+
+    public List<BasisSum> getUSADayAll();
+
+    public List<BasisSum> getUSADay15(String field);
 }

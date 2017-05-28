@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>cn_day_field_seven</title>
+    <script th:src="@{echarts/echarts.js}" rel="stylesheet"></script>
+    <script th:src="@{map/js/china.js}"></script>
+</head>
+<body>
+<div id="main" style="width: 1350px;height: 600px;"></div>
+<script type="text/javascript" th:inline="javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+    option = {
+        title: {
+            text: '7大分类趋势比较',
+            subtext: 'www.zhaopin.com'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+//            data:['最高气温','最低气温']
+            data:['软件/互联网开发/系统集成', '硬件开发', '互联网产品/运营管理', 'IT质量管理/测试/配置管理',
+                'IT运维/技术支持', 'IT管理/项目协调', '电信/通信技术开发及应用']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                dataView: {readOnly: false},
+                magicType: {type: ['line', 'bar']},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis:  {
+            type: 'category',
+            boundaryGap: false,
+//            data: ['周一','周二','周三','周四','周五','周六','周日']
+            data: [[${dateList}]]
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} '
+            }
+        },
+        series: [
+            {
+                name:'软件/互联网开发/系统集成',
+                type:'line',
+//                data:[11, 11, 15, 13, 12, 13, 10],
+                data: [[${sum160000}]]
+            },
+            {
+                name:'硬件开发',
+                type:'line',
+                data: [[${sum160300}]]
+            },
+            {
+                name: '互联网产品/运营管理',
+                type: 'line',
+                data: [[${sum160200}]]
+            },
+            {
+                name: 'IT质量管理/测试/配置管理',
+                type: 'line',
+                data: [[${sum160400}]]
+            },
+            {
+                name: 'IT运维/技术支持',
+                type: 'line',
+                data: [[${sum200500}]]
+            },
+            {
+                name: 'IT管理/项目协调',
+                type: 'line',
+                data: [[${sum200300}]]
+            },
+            {
+                name: '电信/通信技术开发及应用',
+                type: 'line',
+                data: [[${sum5001000}]]
+            }
+        ]
+    };
+
+
+    myChart.setOption(option);
+
+</script>
+</body>
+</html>

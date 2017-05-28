@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>cn_day_area</title>
+    <script th:src="@{echarts/echarts.js}" rel="stylesheet"></script>
+    <script th:src="@{map/js/china.js}"></script>
+</head>
+<body>
+<div id="main" style="width: 1350px;height: 600px;"></div>
+<script type="text/javascript" th:inline="javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+    option = {
+        title: {
+            text: '主要城市趋势比较',
+            subtext: 'www.zhaopin.com'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+//            data:['最高气温','最低气温']
+            data:['北京','上海','广州','青岛','济南','重庆','深圳','杭州']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {
+                    yAxisIndex: 'none'
+                },
+                dataView: {readOnly: false},
+                magicType: {type: ['line', 'bar']},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis:  {
+            type: 'category',
+            boundaryGap: false,
+//            data: ['周一','周二','周三','周四','周五','周六','周日']
+            data: [[${dateList}]]
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} '
+            }
+        },
+        series: [
+            {
+                name:'北京',
+                type:'line',
+//                data:[11, 11, 15, 13, 12, 13, 10],
+                data: [[${beijing}]]
+            },
+            {
+                name:'上海',
+                type:'line',
+                data: [[${shanghai}]]
+            },
+            {
+                name: '广州',
+                type: 'line',
+                data: [[${guangzhou}]]
+            },
+            {
+                name: '青岛',
+                type: 'line',
+                data: [[${qingdao}]]
+            },
+            {
+                name: '济南',
+                type: 'line',
+                data: [[${jinan}]]
+            },
+            {
+                name: '重庆',
+                type: 'line',
+                data: [[${zhongqing}]]
+            },
+            {
+                name: '深圳',
+                type: 'line',
+                data: [[${shenzhen}]]
+            },
+            {
+                name: '杭州',
+                type: 'line',
+                data: [[${hangzhou}]]
+            }
+        ]
+    };
+
+
+    myChart.setOption(option);
+
+</script>
+</body>
+</html>
